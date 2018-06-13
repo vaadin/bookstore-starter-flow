@@ -1,0 +1,35 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/vaadin-ordered-layout/vaadin-horizontal-layout.html">
+<link rel="import" href="../../../bower_components/vaadin-ordered-layout/vaadin-vertical-layout.html">
+
+<dom-module id="main-screen">
+    <template>
+        <style>
+        :host {
+            display: block;
+        }
+
+        </style>
+
+        <vaadin-horizontal-layout width-full height-full>
+            <vaadin-vertical-layout id="layout" width-full margin="false"></vaadin-vertical-layout>
+            <slot></slot>
+        </vaadin-horizontal-layout>
+    </template>
+    <script>
+    class MainScreen extends Polymer.Element {
+      static get is() {
+        return 'main-screen';
+      }
+
+      ready() {
+        super.ready();
+      }
+    }
+    window.customElements.define(MainScreen.is, MainScreen);
+
+
+
+    </script>
+
+</dom-module>
