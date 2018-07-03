@@ -1,6 +1,7 @@
 package com.vaadin;
 
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.server.VaadinRequest;
 import com.vaadin.flow.server.VaadinServlet;
 import com.vaadin.flow.server.VaadinServletConfiguration;
@@ -23,8 +24,6 @@ public class MyUI extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        setLocale(vaadinRequest.getLocale());
-        getPage().setTitle("My");
     }
 
     public static MyUI get() {

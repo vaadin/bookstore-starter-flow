@@ -47,6 +47,7 @@ public class SampleCrudLogic implements Serializable {
             fragmentParameter = productId;
         }
 
+        //TODO must be converted to Flow version in next steps
 //        Page page = MyUI.get().getPage();
 //        page.setUriFragment(
 //                "!" + SampleCrudView.VIEW_NAME + "/" + fragmentParameter,

@@ -22,7 +22,8 @@ public class MainScreen extends HorizontalLayout {
         viewContainer.addStyleName("valo-content");
         viewContainer.setSizeFull();
 
-        //final Navigator navigator = new Navigator(ui, viewContainer);
+        //TODO must be converted to Flow version in next steps
+//        final Navigator navigator = new Navigator(ui, viewContainer);
 //        navigator.setErrorView(ErrorView.class);
 //        menu = new Menu(navigator);
 //        menu.addView(new SampleCrudView(), SampleCrudView.VIEW_NAME,
