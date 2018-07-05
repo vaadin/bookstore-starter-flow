@@ -8,6 +8,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import static com.vaadin.samples.backend.data.Availability.*;
+
 public class Product implements Serializable {
 
     @NotNull
@@ -21,7 +23,7 @@ public class Product implements Serializable {
     @Min(value = 0, message = "Can't have negative amount in stock")
     private int stockCount = 0;
     @NotNull
-    private Availability availability = Availability.COMING;
+    private Availability availability = COMING;
 
     public int getId() {
         return id;
@@ -70,5 +72,4 @@ public class Product implements Serializable {
     public void setAvailability(Availability availability) {
         this.availability = availability;
     }
-
 }

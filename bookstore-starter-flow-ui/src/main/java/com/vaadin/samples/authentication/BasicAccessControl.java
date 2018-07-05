@@ -7,6 +7,9 @@ package com.vaadin.samples.authentication;
  */
 public class BasicAccessControl implements AccessControl {
 
+    public BasicAccessControl() {
+    }
+
     @Override
     public boolean signIn(String username, String password) {
         if (username == null || username.isEmpty())
@@ -18,14 +21,16 @@ public class BasicAccessControl implements AccessControl {
 
     @Override
     public boolean isUserSignedIn() {
-        return !CurrentUser.get().isEmpty();
+        String username = CurrentUser.get();
+
+        return username != null && !username.isEmpty();
     }
 
     @Override
     public boolean isUserInRole(String role) {
-        if ("admin".equals(role)) {
+        if (ADMIN_ROLE_NAME.equals(role)) {
             // Only the "admin" user is in the "admin" role
-            return getPrincipalName().equals("admin");
+            return getPrincipalName().equals(ADMIN_USERNAME);
         }
 
         // All users are in all non-admin roles
