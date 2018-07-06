@@ -1,8 +1,8 @@
 package com.vaadin.samples.authentication;
 
 public class AccessControlFactory {
-    private static AccessControlFactory instance = new AccessControlFactory();
-    private AccessControl accessControl = new BasicAccessControl();
+    private static final AccessControlFactory instance = new AccessControlFactory();
+    private final AccessControl accessControl = new BasicAccessControl();
 
     private AccessControlFactory() {
     }
