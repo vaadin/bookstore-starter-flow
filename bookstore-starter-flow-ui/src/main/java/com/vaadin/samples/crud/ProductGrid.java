@@ -45,7 +45,7 @@ public class ProductGrid extends Grid<Product> {
                 + "<template is=\"dom-if\" if=\"[[item.discontinued]]\" restamp>"
                 + "<iron-icon icon=\"vaadin:circle\" style=\"color: #f54993;\"></iron-icon> Discontinued"
                 + "</template>";
-        this.addColumn(TemplateRenderer.<Product>of(availabilityTemplate)
+        addColumn(TemplateRenderer.<Product>of(availabilityTemplate)
                 .withProperty("available", product -> product.getAvailability() == Availability.AVAILABLE)
                 .withProperty("coming", product -> product.getAvailability() == Availability.COMING)
                 .withProperty("discontinued", product -> product.getAvailability() == Availability.DISCONTINUED))

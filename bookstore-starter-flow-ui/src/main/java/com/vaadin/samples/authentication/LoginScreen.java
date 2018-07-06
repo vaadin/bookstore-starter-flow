@@ -30,14 +30,14 @@ public class LoginScreen extends HorizontalLayout {
     private AccessControl accessControl;
 
     public LoginScreen() {
-        this.accessControl = AccessControlFactory.getInstance().createAccessControl();
+        accessControl = AccessControlFactory.getInstance().createAccessControl();
         buildUI();
         username.focus();
     }
 
     private void buildUI() {
-        this.setSizeFull();
-        this.getStyle().set("display", "flex");
+        setSizeFull();
+        getStyle().set("display", "flex");
 
         // login form, centered in the available part of the screen
         Component loginForm = buildLoginForm();
@@ -66,22 +66,13 @@ public class LoginScreen extends HorizontalLayout {
 
         buttons.add(login = new Button("Login"));
 
-        login.addClickListener(event -> {
-            login.setEnabled(false);
-            try {
-                login();
-            } finally {
-                login.setEnabled(true);
-            }
-        });
+        login.addClickListener(event -> login());
 
         login.getElement().getThemeList().add("success primary");
 
         buttons.add(forgotPassword = new Button("Forgot password?"));
         forgotPassword.getElement().getThemeList().add("tertiary");
-        forgotPassword.addClickListener(event -> {
-            showNotification(new Notification("Hint: Try anything"));
-        });
+        forgotPassword.addClickListener(event -> showNotification(new Notification("Hint: Try anything")));
 
         Div div = new Div(loginForm);
         div.setSizeFull();
@@ -108,12 +99,17 @@ public class LoginScreen extends HorizontalLayout {
     }
 
     private void login() {
-        if (accessControl.signIn(username.getValue(), password.getValue())) {
-            UI.getCurrent().navigate("");
-        } else {
-            showNotification(new Notification("Login failed. " +
-                    "Please check your username and password and try again."));
-            username.focus();
+        login.setEnabled(false);
+        try {
+            if (accessControl.signIn(username.getValue(), password.getValue())) {
+                getUI().get().navigate("");
+            } else {
+                showNotification(new Notification("Login failed. " +
+                        "Please check your username and password and try again."));
+                username.focus();
+            }
+        } finally {
+            login.setEnabled(true);
         }
     }
 

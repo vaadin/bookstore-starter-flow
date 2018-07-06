@@ -11,7 +11,7 @@ public class MainScreen extends HorizontalLayout implements RouterLayout {
 
     public MainScreen() {
 
-        this.setSpacing(false);
+        setSpacing(false);
         setSizeFull();
 
         menu = new Menu();
@@ -20,6 +20,6 @@ public class MainScreen extends HorizontalLayout implements RouterLayout {
         menu.addView(AboutView.class, AboutView.VIEW_NAME, AboutView.VIEW_NAME,
                 VaadinIcon.INFO_CIRCLE.create());
 
-        this.add(menu);
+        add(menu);
     }
 }

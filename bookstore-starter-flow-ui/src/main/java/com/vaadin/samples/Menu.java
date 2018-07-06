@@ -36,9 +36,7 @@ public class Menu extends HorizontalLayout {
         menuPart.add(top);
 
         // button for toggling the visibility of the menu when on a small screen
-        final Button showMenu = new Button("Menu", event -> {
-            tabs.setVisible(!tabs.isVisible());
-        });
+        final Button showMenu = new Button("Menu", event -> tabs.setVisible(!tabs.isVisible()));
 
         showMenu.setIcon(new Icon(VaadinIcon.MENU));
         menuPart.add(showMenu);
