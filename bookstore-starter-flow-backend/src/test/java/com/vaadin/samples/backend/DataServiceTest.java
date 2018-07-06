@@ -16,22 +16,22 @@ public class DataServiceTest {
     private DataService service;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         service = MockDataService.getInstance();
     }
 
     @Test
-    public void testDataServiceCanFetchProducts() throws Exception {
+    public void testDataServiceCanFetchProducts() {
         assertFalse(service.getAllProducts().isEmpty());
     }
 
     @Test
-    public void testDataServiceCanFetchCategories() throws Exception {
+    public void testDataServiceCanFetchCategories() {
         assertFalse(service.getAllCategories().isEmpty());
     }
 
     @Test
-    public void testUpdateProduct_updatesTheProduct() throws Exception {
+    public void testUpdateProduct_updatesTheProduct() {
         Product p = service.getAllProducts().iterator().next();
         p.setProductName("My Test Name");
         service.updateProduct(p);

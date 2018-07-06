@@ -62,11 +62,12 @@ public class MockDataService extends DataService {
 
     @Override
     public synchronized Product getProductById(int productId) {
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getId() == productId) {
-                return products.get(i);
+        for (Product product : products) {
+            if (product.getId() == productId) {
+                return product;
             }
         }
+
         return null;
     }
 
