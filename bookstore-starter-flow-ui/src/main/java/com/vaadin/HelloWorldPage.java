@@ -9,6 +9,6 @@ import com.vaadin.flow.router.Route;
 @PageTitle("My")
 public class HelloWorldPage extends Div {
     public HelloWorldPage() {
-        this.add(new H1("Hello World!"));
+        add(new H1("Hello World!"));
     }
 }
