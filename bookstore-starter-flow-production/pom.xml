@@ -24,20 +24,19 @@
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
-        <!-- Also include the compiled classes as a provided dependency so 
-            that the GWT compiler can pick up all the GWT modules. -->
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>bookstore-starter-flow-ui</artifactId>
-            <version>${project.version}</version>
-            <classifier>classes</classifier>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
 
     <profiles>
         <profile>
             <id>production</id>
+
+            <dependencies>
+                <dependency>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-core</artifactId>
+                </dependency>
+            </dependencies>
+
             <build>
                 <plugins>
                     <!-- Unpack the theme and widgetset to (re)compile them 
@@ -101,22 +100,12 @@
                     <plugin>
                         <groupId>com.vaadin</groupId>
                         <artifactId>vaadin-maven-plugin</artifactId>
-                        <configuration>
-                            <module>com.vaadin.MyAppWidgetset</module>
-                            <extraJvmArgs>-Xmx512M -Xss1024k</extraJvmArgs>
-                            <warSourceDirectory>${vaadin.resource.directory}</warSourceDirectory>
-                            <webappDirectory>${vaadin.resource.directory}/VAADIN/widgetsets</webappDirectory>
-                            <draftCompile>false</draftCompile>
-                            <compileReport>false</compileReport>
-                            <style>OBF</style>
-                            <strict>true</strict>
-                            <theme>mytheme</theme>
-                        </configuration>
+                        <version>${vaadin.version}</version>
                         <executions>
                             <execution>
                                 <goals>
-                                    <goal>compile</goal>
-                                    <goal>compile-theme</goal>
+                                    <goal>copy-production-files</goal>
+                                    <goal>package-for-production</goal>
                                 </goals>
                             </execution>
                         </executions>
@@ -173,9 +162,6 @@
                         <groupId>org.eclipse.jetty</groupId>
                         <artifactId>jetty-maven-plugin</artifactId>
                         <version>${jetty.plugin.version}</version>
-                        <configuration>
-                            <baseResource>${vaadin.resource.directory}</baseResource>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>

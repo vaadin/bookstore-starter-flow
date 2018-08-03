@@ -19,8 +19,7 @@ public class ProductDataProvider extends AbstractDataProvider<Product, String> {
     /**
      * Store given product to the backing data service.
      *
-     * @param product
-     *            the updated or new product
+     * @param product the updated or new product
      */
     public void save(Product product) {
         boolean newProduct = product.getId() == -1;
@@ -36,8 +35,7 @@ public class ProductDataProvider extends AbstractDataProvider<Product, String> {
     /**
      * Delete given product from the backing data service.
      *
-     * @param product
-     *            the product to be deleted
+     * @param product the product to be deleted
      */
     public void delete(Product product) {
         DataService.get().deleteProduct(product.getId());
@@ -49,8 +47,7 @@ public class ProductDataProvider extends AbstractDataProvider<Product, String> {
      * <p>
      * Filter is compared for product name, availability and category.
      *
-     * @param filterText
-     *            the text to filter by, never null
+     * @param filterText the text to filter by, never null
      */
     public void setFilter(String filterText) {
         Objects.requireNonNull(filterText, "Filter text cannot be null");

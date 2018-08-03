@@ -71,15 +71,12 @@ public class Menu extends FlexLayout {
      * Register a pre-created view instance in the navigation menu and in the
      * {@link Router}.
      *
-     * @param viewClass
-     *            view instance to register
-     * @param caption
-     *            view caption in the menu
-     * @param icon
-     *            view icon in the menu
+     * @param viewClass view instance to register
+     * @param caption   view caption in the menu
+     * @param icon      view icon in the menu
      */
     public void addView(Class<? extends Component> viewClass, String caption,
-            Icon icon) {
+                        Icon icon) {
         Tab tab = new Tab();
         Button button = new Button(caption, icon,
                 event -> UI.getCurrent().navigate(viewClass));
