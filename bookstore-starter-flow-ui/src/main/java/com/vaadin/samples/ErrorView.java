@@ -22,7 +22,9 @@ public class ErrorView extends VerticalLayout implements HasErrorParameter<NotFo
     public ErrorView() {
         H1 header = new H1("The view could not be found");
         add(header);
-        add(explanation = new Span());
+
+        explanation = new Span();
+        add(explanation);
     }
 
     @Override
