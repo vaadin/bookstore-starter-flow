@@ -1,5 +1,7 @@
 package com.vaadin.samples.crud;
 
+import com.vaadin.flow.component.UI;
+import com.vaadin.samples.authentication.AccessControl;
 import com.vaadin.samples.authentication.AccessControlFactory;
 import com.vaadin.samples.backend.DataService;
 import com.vaadin.samples.backend.data.Product;
@@ -10,7 +12,7 @@ import java.io.Serializable;
  * This class provides an interface for the logical operations between the CRUD
  * view, its parts like the product editor form and the data source, including
  * fetching and saving products.
- *
+ * <p>
  * Having this separate from the view makes it easier to test various parts of
  * the system separately, and to e.g. provide alternative views for the same
  * data.
@@ -25,8 +27,9 @@ public class SampleCrudLogic implements Serializable {
 
     public void init() {
         editProduct(null);
+
         // Hide and disable if not admin
-        if (!AccessControlFactory.getInstance().createAccessControl().isUserInRole("admin")) {
+        if (!AccessControlFactory.getInstance().createAccessControl().isUserInRole(AccessControl.ADMIN_ROLE_NAME)) {
             view.setNewProductEnabled(false);
         }
     }
@@ -47,11 +50,7 @@ public class SampleCrudLogic implements Serializable {
             fragmentParameter = productId;
         }
 
-        //TODO must be converted to Flow version in next steps
-//        Page page = MyUI.get().getPage();
-//        page.setUriFragment(
-//                "!" + SampleCrudView.VIEW_NAME + "/" + fragmentParameter,
-//                false);
+        UI.getCurrent().navigate(SampleCrudView.class, fragmentParameter);
     }
 
     public void enter(String productId) {
@@ -107,8 +106,8 @@ public class SampleCrudLogic implements Serializable {
     }
 
     public void rowSelected(Product product) {
-        if (AccessControlFactory.getInstance().createAccessControl().isUserInRole("admin")) {
-            view.editProduct(product);
+        if (AccessControlFactory.getInstance().createAccessControl().isUserInRole(AccessControl.ADMIN_ROLE_NAME)) {
+            editProduct(product);
         }
     }
 }
