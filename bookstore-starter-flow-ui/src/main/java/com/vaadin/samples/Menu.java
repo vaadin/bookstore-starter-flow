@@ -13,7 +13,6 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
-import com.vaadin.flow.router.Router;
 import com.vaadin.flow.server.VaadinSession;
 
 public class Menu extends FlexLayout {
@@ -68,10 +67,9 @@ public class Menu extends FlexLayout {
     }
 
     /**
-     * Register a pre-created view instance in the navigation menu and in the
-     * {@link Router}.
+     * Add a view to the navigation menu
      *
-     * @param viewClass view instance to register
+     * @param viewClass that has a {@code Route} annotation
      * @param caption   view caption in the menu
      * @param icon      view icon in the menu
      */

@@ -49,7 +49,9 @@ public class ProductForm extends PolymerTemplate<TemplateModel> {
     @Id("categoryContainer")
     private Div categoryContainer;
 
-    private CheckboxGroup<Category> category;
+    // Since this CheckboxGroup does not have an equivalent web
+    // component there is no @Id annotation here.
+    private CheckboxGroup<Category> categories;
 
     @Id("save")
     private Button save;
@@ -110,11 +112,11 @@ public class ProductForm extends PolymerTemplate<TemplateModel> {
         binder.forField(stockCount).withConverter(new StockPriceConverter())
                 .bind("stockCount");
 
-        category = new CheckboxGroup<>();
-        category.getContent().getStyle().set("flex-direction", "column");
-        categoryContainer.add(category);
+        categories = new CheckboxGroup<>();
+        categories.getContent().getStyle().set("flex-direction", "column");
+        categoryContainer.add(categories);
 
-        binder.forField(category).bind("category");
+        binder.forField(categories).bind("category");
         binder.bindInstanceFields(this);
 
         // enable/disable save button while editing
@@ -145,7 +147,7 @@ public class ProductForm extends PolymerTemplate<TemplateModel> {
     }
 
     public void setCategories(Collection<Category> categories) {
-        category.setItems(categories);
+        this.categories.setItems(categories);
     }
 
     public void editProduct(Product product) {

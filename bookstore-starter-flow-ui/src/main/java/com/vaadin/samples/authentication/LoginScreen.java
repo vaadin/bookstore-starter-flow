@@ -4,10 +4,10 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
-import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
@@ -20,7 +20,7 @@ import com.vaadin.flow.router.Route;
  */
 @Route("Login")
 @PageTitle("Login")
-public class LoginScreen extends HorizontalLayout {
+public class LoginScreen extends FlexLayout {
 
     private TextField username;
     private PasswordField password;
@@ -36,7 +36,6 @@ public class LoginScreen extends HorizontalLayout {
 
     private void buildUI() {
         setSizeFull();
-        getStyle().set("display", "flex");
 
         // login form, centered in the available part of the screen
         Component loginForm = buildLoginForm();
@@ -73,14 +72,13 @@ public class LoginScreen extends HorizontalLayout {
         forgotPassword.getElement().getThemeList().add("tertiary");
         forgotPassword.addClickListener(event -> showNotification(new Notification("Hint: Try anything")));
 
-        Div div = new Div(loginForm);
-        div.setSizeFull();
-        div.getStyle().set("display", "flex");
-        div.getStyle().set("justify-content", "center");
-        div.getStyle().set("align-items", "center");
-        div.getStyle().set("flex", "1");
+        FlexLayout loginFormContainer = new FlexLayout(loginForm);
+        loginFormContainer.setSizeFull();
+        loginFormContainer.getStyle().set("justify-content", "center");
+        loginFormContainer.getStyle().set("align-items", "center");
+        loginFormContainer.getStyle().set("flex", "1");
 
-        return div;
+        return loginFormContainer;
     }
 
     private Component buildLoginInformation() {
@@ -92,8 +90,13 @@ public class LoginScreen extends HorizontalLayout {
                         + "For all users, any password is fine");
         loginInformation.add(loginInfoHeader);
         loginInformation.add(loginInfoText);
-        loginInformation.getStyle().set("min-width", "300px");
+
+        // To avoid it growing with its parent
         loginInformation.getStyle().set("flex", "0");
+
+        // To set a fixed minimum width
+        loginInformation.getStyle().set("min-width", "300px");
+
         return loginInformation;
     }
 
