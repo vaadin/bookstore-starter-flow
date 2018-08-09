@@ -45,6 +45,8 @@ public class LoginScreen extends FlexLayout {
 
         add(loginInformation);
         add(loginForm);
+
+        setFlexGrow(1, loginInformation);
     }
 
     private Component buildLoginForm() {
@@ -74,9 +76,8 @@ public class LoginScreen extends FlexLayout {
 
         FlexLayout loginFormContainer = new FlexLayout(loginForm);
         loginFormContainer.setSizeFull();
-        loginFormContainer.getStyle().set("justify-content", "center");
-        loginFormContainer.getStyle().set("align-items", "center");
-        loginFormContainer.getStyle().set("flex", "1");
+        loginFormContainer.setJustifyContentMode(JustifyContentMode.CENTER);
+        loginFormContainer.setAlignItems(Alignment.CENTER);
 
         return loginFormContainer;
     }
