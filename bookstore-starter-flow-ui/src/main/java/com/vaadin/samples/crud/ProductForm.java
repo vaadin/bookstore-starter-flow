@@ -49,6 +49,8 @@ public class ProductForm extends PolymerTemplate<TemplateModel> {
     @Id("categoryContainer")
     private Div categoryContainer;
 
+    // Since this CheckboxGroup does not have an equivalent web
+    // component there is no @Id annotation here.
     private CheckboxGroup<Category> category;
 
     @Id("save")

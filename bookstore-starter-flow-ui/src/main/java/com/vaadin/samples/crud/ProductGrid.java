@@ -1,8 +1,8 @@
 package com.vaadin.samples.crud;
 
+import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.data.renderer.TemplateRenderer;
-import com.vaadin.samples.backend.data.Availability;
 import com.vaadin.samples.backend.data.Category;
 import com.vaadin.samples.backend.data.Product;
 
@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
  * items. This version uses an in-memory data source that is suitable for small
  * data sets.
  */
+@StyleSheet("css/grid.css")
 public class ProductGrid extends Grid<Product> {
 
     public ProductGrid() {
@@ -28,6 +29,7 @@ public class ProductGrid extends Grid<Product> {
         decimalFormat.setMaximumFractionDigits(2);
         decimalFormat.setMinimumFractionDigits(2);
 
+        // To change the text alignment of the column, a template is used.
         final String priceTemplate = "<div style='text-align: right'>[[item.price]]</div>";
         addColumn(TemplateRenderer.<Product>of(priceTemplate)
                 .withProperty("price", product -> decimalFormat.format(product.getPrice()) + " €"))
@@ -36,23 +38,17 @@ public class ProductGrid extends Grid<Product> {
                 .setFlexGrow(3);
 
         // Add an traffic light icon in front of availability
-        final String availabilityTemplate = "<template is=\"dom-if\" if=\"[[item.available]]\" restamp>"
-                + "<iron-icon icon=\"vaadin:circle\" style=\"color: #2dd085;\"></iron-icon> Available"
-                + "</template>"
-                + "<template is=\"dom-if\" if=\"[[item.coming]]\" restamp>"
-                + "<iron-icon icon=\"vaadin:circle\" style=\"color: #ffc66e;\"></iron-icon> Coming"
-                + "</template>"
-                + "<template is=\"dom-if\" if=\"[[item.discontinued]]\" restamp>"
-                + "<iron-icon icon=\"vaadin:circle\" style=\"color: #f54993;\"></iron-icon> Discontinued"
-                + "</template>";
+        // Three css classes with the same names of three availability values,
+        // Available, Coming and Discontinued, are defined in grid.css and are
+        // used here in availabilityTemplate.
+        final String availabilityTemplate = "<iron-icon icon=\"vaadin:circle\" class-name=\"[[item.availability]]\"></iron-icon> [[item.availability]]";
         addColumn(TemplateRenderer.<Product>of(availabilityTemplate)
-                .withProperty("available", product -> product.getAvailability() == Availability.AVAILABLE)
-                .withProperty("coming", product -> product.getAvailability() == Availability.COMING)
-                .withProperty("discontinued", product -> product.getAvailability() == Availability.DISCONTINUED))
+                .withProperty("availability", product -> product.getAvailability().toString()))
                 .setHeader("Availability")
                 .setComparator(Comparator.comparing(Product::getAvailability))
                 .setFlexGrow(5);
 
+        // To change the text alignment of the column, a template is used.
         final String stockCountTemplate = "<div style='text-align: right'>[[item.stockCount]]</div>";
         addColumn(TemplateRenderer.<Product>of(stockCountTemplate)
                 .withProperty("stockCount", product -> product.getStockCount() == 0 ? "-" : Integer.toString(product.getStockCount())))
