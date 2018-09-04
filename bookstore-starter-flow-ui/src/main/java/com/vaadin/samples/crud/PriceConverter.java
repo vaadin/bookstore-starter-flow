@@ -10,19 +10,18 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 /**
- * A converter that adds/removes the euro sign and formats currencies with two
- * decimal places.
+ * A converter that formats currencies with two decimal places.
  */
-public class EuroConverter extends StringToBigDecimalConverter {
+public class PriceConverter extends StringToBigDecimalConverter {
 
-    public EuroConverter() {
+    public PriceConverter() {
         super("Cannot convert value to a number");
     }
 
     @Override
     public Result<BigDecimal> convertToModel(String value,
             ValueContext context) {
-        value = value.replaceAll("[€\\s]", "").trim();
+        value = value.trim();
         if ("".equals(value)) {
             value = "0";
         }
@@ -38,11 +37,5 @@ public class EuroConverter extends StringToBigDecimalConverter {
             format.setMinimumFractionDigits(2);
         }
         return format;
-    }
-
-    @Override
-    public String convertToPresentation(BigDecimal value,
-            ValueContext context) {
-        return super.convertToPresentation(value, context) + " €";
     }
 }

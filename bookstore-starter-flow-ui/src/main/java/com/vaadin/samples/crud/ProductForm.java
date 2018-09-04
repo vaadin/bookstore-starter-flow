@@ -4,6 +4,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -42,9 +43,9 @@ public class ProductForm extends VerticalLayout {
     private Binder<Product> binder;
     private Product currentProduct;
 
-    private static class StockPriceConverter extends StringToIntegerConverter {
+    private static class StockCountConverter extends StringToIntegerConverter {
 
-        public StockPriceConverter() {
+        public StockCountConverter() {
             super("Could not convert value to " + Integer.class.getName());
         }
 
@@ -87,10 +88,13 @@ public class ProductForm extends VerticalLayout {
 
         price = new TextField("Price");
         price.setWidth("44%");
+        price.setSuffixComponent(new Span("€"));
+        price.getElement().getThemeList().add("align-right");
         price.setValueChangeMode(ValueChangeMode.EAGER);
 
         stockCount = new TextField("In Stock");
         stockCount.setWidth("43%");
+        stockCount.getElement().getThemeList().add("align-right");
         stockCount.setValueChangeMode(ValueChangeMode.EAGER);
 
         HorizontalLayout horizontalLayout = new HorizontalLayout(price,
@@ -117,8 +121,8 @@ public class ProductForm extends VerticalLayout {
         setFlexGrow(1, expander);
 
         binder = new BeanValidationBinder<>(Product.class);
-        binder.forField(price).withConverter(new EuroConverter()).bind("price");
-        binder.forField(stockCount).withConverter(new StockPriceConverter())
+        binder.forField(price).withConverter(new PriceConverter()).bind("price");
+        binder.forField(stockCount).withConverter(new StockCountConverter())
                 .bind("stockCount");
         binder.bindInstanceFields(this);
 
