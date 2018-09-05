@@ -10,8 +10,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
-import com.vaadin.flow.data.binder.Result;
-import com.vaadin.flow.data.binder.ValueContext;
+import com.vaadin.flow.data.converter.StringToBigDecimalConverter;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.samples.backend.data.Availability;
@@ -19,6 +18,7 @@ import com.vaadin.samples.backend.data.Category;
 import com.vaadin.samples.backend.data.Product;
 import org.vaadin.pekka.CheckboxGroup;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
@@ -43,18 +43,36 @@ public class ProductForm extends VerticalLayout {
     private Binder<Product> binder;
     private Product currentProduct;
 
-    private static class StockCountConverter extends StringToIntegerConverter {
+    private static class PriceConverter extends StringToBigDecimalConverter {
 
-        public StockCountConverter() {
-            super("Could not convert value to " + Integer.class.getName());
+        public PriceConverter() {
+            super(BigDecimal.ZERO, "Cannot convert value to a number.");
         }
 
         @Override
         protected NumberFormat getFormat(Locale locale) {
-            // do not use a thousands separator, as HTML5 input type
+            // Always display currency with two decimals
+            NumberFormat format = super.getFormat(locale);
+            if (format instanceof DecimalFormat) {
+                format.setMaximumFractionDigits(2);
+                format.setMinimumFractionDigits(2);
+            }
+            return format;
+        }
+    }
+
+    private static class StockCountConverter extends StringToIntegerConverter {
+
+        public StockCountConverter() {
+            super(0, "Could not convert value to " + Integer.class.getName() + ".");
+        }
+
+        @Override
+        protected NumberFormat getFormat(Locale locale) {
+            // Do not use a thousands separator, as HTML5 input type
             // number expects a fixed wire/DOM number format regardless
             // of how the browser presents it to the user (which could
-            // depend on the browser locale)
+            // depend on the browser locale).
             DecimalFormat format = new DecimalFormat();
             format.setMaximumFractionDigits(0);
             format.setDecimalSeparatorAlwaysShown(false);
@@ -62,14 +80,6 @@ public class ProductForm extends VerticalLayout {
             format.setGroupingUsed(false);
             return format;
         }
-
-        @Override
-        public Result<Integer> convertToModel(String value,
-                ValueContext context) {
-            Result<Integer> result = super.convertToModel(value, context);
-            return result.map(stock -> stock == null ? 0 : stock);
-        }
-
     }
 
     public ProductForm(SampleCrudLogic sampleCrudLogic) {
