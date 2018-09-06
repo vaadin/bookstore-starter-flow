@@ -53,7 +53,7 @@ public class ProductDataProvider extends ListDataProvider<Product> {
      *            the text to filter by, never null
      */
     public void setFilter(String filterText) {
-        Objects.requireNonNull(filterText, "Filter text cannot be null");
+        Objects.requireNonNull(filterText, "Filter text cannot be null.");
         if (Objects.equals(this.filterText, filterText.trim())) {
             return;
         }
