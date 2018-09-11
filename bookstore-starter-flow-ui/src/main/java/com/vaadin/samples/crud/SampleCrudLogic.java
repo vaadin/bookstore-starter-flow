@@ -77,19 +77,19 @@ public class SampleCrudLogic implements Serializable {
     }
 
     public void saveProduct(Product product) {
-        view.showSaveNotification(product.getProductName()
-                + (product.isNewProduct() ? " created" : " updated"));
-
+        boolean newProduct = product.isNewProduct();
         view.clearSelection();
         view.updateProduct(product);
         setFragmentParameter("");
+        view.showSaveNotification(product.getProductName()
+                + (newProduct ? " created" : " updated"));
     }
 
     public void deleteProduct(Product product) {
-        view.showSaveNotification(product.getProductName() + " removed");
         view.clearSelection();
         view.removeProduct(product);
         setFragmentParameter("");
+        view.showSaveNotification(product.getProductName() + " removed");
     }
 
     public void editProduct(Product product) {
