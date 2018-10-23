@@ -32,7 +32,7 @@ Other basic workflow steps:
   - run "mvn jetty:run" in ui module
   - open http://localhost:8080/
 - creating a production mode war
-  - run "mvn -Pproduction package" in the ui module or in the parent module
+  - run "mvn -Dvaadin.productionMode package" in the ui module or in the parent module
 
 ### Branching information:
 * `master` the latest version of the starter, using latest platform snapshot
