@@ -10,8 +10,6 @@ import com.vaadin.flow.theme.lumo.Lumo;
 import com.vaadin.samples.about.AboutView;
 import com.vaadin.samples.crud.SampleCrudView;
 
-//import com.vaadin.flow.server.PWA;
-
 /**
  * The layout of the pages e.g. About and Inventory.
  */
