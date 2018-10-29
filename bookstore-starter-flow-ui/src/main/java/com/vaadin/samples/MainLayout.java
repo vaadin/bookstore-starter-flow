@@ -1,6 +1,6 @@
 package com.vaadin.samples;
 
-import com.vaadin.flow.component.dependency.StyleSheet;
+import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.router.RouterLayout;
@@ -10,10 +10,12 @@ import com.vaadin.flow.theme.lumo.Lumo;
 import com.vaadin.samples.about.AboutView;
 import com.vaadin.samples.crud.SampleCrudView;
 
+//import com.vaadin.flow.server.PWA;
+
 /**
  * The layout of the pages e.g. About and Inventory.
  */
-@StyleSheet("css/shared-styles.css")
+@HtmlImport("css/shared-styles.html")
 @Theme(value = Lumo.class, variant = Lumo.DARK)
 @PWA(name = "Bookstore Starter", shortName = "Bookstore")
 public class MainLayout extends FlexLayout implements RouterLayout {
