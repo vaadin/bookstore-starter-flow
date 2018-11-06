@@ -10,6 +10,9 @@ import java.util.Locale;
 import org.vaadin.pekka.CheckboxGroup;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.checkbox.CheckboxGroup;
+import com.vaadin.flow.component.checkbox.CheckboxGroupVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
@@ -17,6 +20,7 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.converter.StringToBigDecimalConverter;
@@ -104,11 +108,11 @@ public class ProductForm extends Div {
 
         price = new TextField("Price");
         price.setSuffixComponent(new Span("€"));
-        price.getElement().getThemeList().add("align-right");
+        price.addThemeVariants(TextFieldVariant.LUMO_ALIGN_RIGHT);
         price.setValueChangeMode(ValueChangeMode.EAGER);
 
         stockCount = new TextField("In stock");
-        stockCount.getElement().getThemeList().add("align-right");
+        stockCount.addThemeVariants(TextFieldVariant.LUMO_ALIGN_RIGHT);
         stockCount.setValueChangeMode(ValueChangeMode.EAGER);
 
         HorizontalLayout horizontalLayout = new HorizontalLayout(price,
@@ -150,7 +154,7 @@ public class ProductForm extends Div {
 
         save = new Button("Save");
         save.setWidth("100%");
-        save.getElement().getThemeList().add("primary");
+        save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         save.addClickListener(event -> {
             if (currentProduct != null
                     && binder.writeBeanIfValid(currentProduct)) {
@@ -172,8 +176,7 @@ public class ProductForm extends Div {
 
         delete = new Button("Delete");
         delete.setWidth("100%");
-        delete.getElement().getThemeList()
-                .addAll(Arrays.asList("error", "primary"));
+        delete.addThemeVariants(ButtonVariant.LUMO_ERROR, ButtonVariant.LUMO_PRIMARY);
         delete.addClickListener(event -> {
             if (currentProduct != null) {
                 viewLogic.deleteProduct(currentProduct);
