@@ -7,10 +7,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
 
-import org.vaadin.pekka.CheckboxGroup;
-
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.checkbox.CheckboxGroup;
 import com.vaadin.flow.component.checkbox.CheckboxGroupVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -130,8 +127,7 @@ public class ProductForm extends Div {
 
         category = new CheckboxGroup<>();
         category.setId("category");
-        category.getContent().getStyle().set("flex-direction", "column")
-                .set("margin", "0");
+        category.addThemeVariants(CheckboxGroupVariant.LUMO_VERTICAL);
         Label categoryLabel = new Label("Categories");
         categoryLabel.setClassName("vaadin-label");
         categoryLabel.setFor(category);
