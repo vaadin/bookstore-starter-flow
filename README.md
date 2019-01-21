@@ -39,5 +39,4 @@ Other basic workflow steps:
 
 ### Branching information:
 * `master` the latest version of the starter, using latest platform snapshot
-* `V10` the version for Vaadin 10
-* `V11` the version for Vaadin 11
+* `V1*` the different Vaadin platform versions, eg. `v10` Vaadin 10
