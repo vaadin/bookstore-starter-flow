@@ -41,3 +41,4 @@ Other basic workflow steps:
 * `master` the latest version of the starter, using latest platform snapshot
 * `V10` the version for Vaadin 10
 * `V11` the version for Vaadin 11
+* `V12` the version for Vaadin 12
