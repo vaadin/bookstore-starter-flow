@@ -6,6 +6,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
+import com.vaadin.flow.router.RouteConfiguration;
 import com.vaadin.flow.router.RouterLayout;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
@@ -32,6 +33,10 @@ public class MainLayout extends FlexLayout implements RouterLayout {
                 VaadinIcon.EDIT.create());
         menu.addView(AboutView.class, AboutView.VIEW_NAME,
                 VaadinIcon.INFO_CIRCLE.create());
+
+        // TODO 4. add the menu item for AdminView if the view was registered
+        // menu.addView(AdminView.class, "admin", VaadinIcon.FIRE.create());
+
 
         add(menu);
 

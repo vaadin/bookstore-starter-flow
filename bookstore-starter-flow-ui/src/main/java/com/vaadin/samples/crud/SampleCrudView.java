@@ -25,7 +25,6 @@ import com.vaadin.samples.backend.data.Product;
  * operations and controlling the view based on events from outside.
  */
 @Route(value = "Inventory", layout = MainLayout.class)
-@RouteAlias(value = "", layout = MainLayout.class)
 public class SampleCrudView extends HorizontalLayout
         implements HasUrlParameter<String> {
 

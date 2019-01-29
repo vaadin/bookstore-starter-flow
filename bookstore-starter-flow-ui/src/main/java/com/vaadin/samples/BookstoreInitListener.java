@@ -1,10 +1,17 @@
 package com.vaadin.samples;
 
+import java.util.Collection;
+import java.util.Collections;
+
+import com.vaadin.flow.router.RouteConfiguration;
+import com.vaadin.flow.router.Router;
+import com.vaadin.flow.server.RouteRegistry;
 import com.vaadin.flow.server.ServiceInitEvent;
 import com.vaadin.flow.server.VaadinServiceInitListener;
 import com.vaadin.samples.authentication.AccessControl;
 import com.vaadin.samples.authentication.AccessControlFactory;
 import com.vaadin.samples.authentication.LoginScreen;
+import com.vaadin.samples.backend.DataService;
 
 /**
  * This class is used to listen to BeforeEnter event of all UIs in order to
@@ -18,12 +25,23 @@ public class BookstoreInitListener implements VaadinServiceInitListener {
         final AccessControl accessControl = AccessControlFactory.getInstance()
                 .createAccessControl();
 
-        initEvent.getSource().addUIInitListener(uiInitEvent -> {
-            uiInitEvent.getUI().addBeforeEnterListener(enterEvent -> {
-                if (!accessControl.isUserSignedIn() && !LoginScreen.class
-                        .equals(enterEvent.getNavigationTarget()))
-                    enterEvent.rerouteTo(LoginScreen.class);
+
+        // TODO: instead of redirect to login, add store view when it is
+        //  available
+        if (DataService.get().hasPublicStoreFront()) {
+            Router router = initEvent.getSource().getRouter();
+            RouteRegistry registry = router.getRegistry();
+            registry.setRoute("",
+                    StoreView.class, Collections.EMPTY_LIST);
+        } else {
+            initEvent.getSource().addUIInitListener(uiInitEvent -> {
+                uiInitEvent.getUI().addBeforeEnterListener(enterEvent -> {
+                    if (!accessControl.isUserSignedIn() && !LoginScreen.class
+                            .equals(enterEvent.getNavigationTarget()))
+                        enterEvent.rerouteTo(LoginScreen.class);
+                });
             });
-        });
+        }
+
     }
 }

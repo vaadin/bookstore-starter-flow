@@ -19,6 +19,10 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouteConfiguration;
+import com.vaadin.flow.server.RouteRegistry;
+import com.vaadin.samples.AdminView;
+import com.vaadin.samples.MainLayout;
 
 /**
  * UI content when the user is not logged in yet.
@@ -69,19 +73,18 @@ public class LoginScreen extends FlexLayout {
         loginForm.addFormItem(username = new TextField(), "Username");
         username.setWidth("15em");
         username.setValue("admin");
-        Shortcuts.addShortcut(username, username, () -> password.focus(),
-                Key.ENTER);
 
         loginForm.add(new Html("<br/>"));
         loginForm.addFormItem(password = new PasswordField(), "Password");
+        password.addFocusShortcut(Key.ENTER).listenOn(username);
         password.setWidth("15em");
-        Shortcuts.addShortcut(password, password, this::login, Key.ENTER);
 
         HorizontalLayout buttons = new HorizontalLayout();
         loginForm.add(new Html("<br/>"));
         loginForm.add(buttons);
 
         buttons.add(login = new Button("Login"));
+        login.addClickShortcut(Key.ENTER).listenOn(password);
         login.addClickListener(event -> login());
         login.addThemeVariants(ButtonVariant.LUMO_SUCCESS, ButtonVariant.LUMO_PRIMARY);
 
@@ -109,7 +112,20 @@ public class LoginScreen extends FlexLayout {
         login.setEnabled(false);
         try {
             if (accessControl.signIn(username.getValue(), password.getValue())) {
-                getUI().get().navigate("");
+
+                getUI().ifPresent(ui -> ui.navigate(""));
+
+                if (accessControl.isUserInRole(AccessControl.ADMIN_ROLE_NAME)) {
+                    // TODO 1. register the AdminView for this session only
+                    //  for /admin
+                    RouteConfiguration.forSessionScope().setRoute("admin",
+                            AdminView.class);
+
+                    // TODO 2. make MainLayout the parent layout of AdminView
+
+                    // TODO 3. unregister the LoginScreen (/login) for this
+                    //  session only
+                }
             } else {
                 showNotification(new Notification("Login failed. " +
                         "Please check your username and password and try again."));

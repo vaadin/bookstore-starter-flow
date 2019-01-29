@@ -1,8 +1,10 @@
 package com.vaadin.samples.backend.mock;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.vaadin.samples.backend.DataService;
+import com.vaadin.samples.backend.data.Availability;
 import com.vaadin.samples.backend.data.Category;
 import com.vaadin.samples.backend.data.Product;
 
@@ -34,6 +36,16 @@ public class MockDataService extends DataService {
     @Override
     public synchronized List<Product> getAllProducts() {
         return products;
+    }
+
+    @Override
+    public synchronized List<Product> getAvailableProducts() {
+        return getAllProducts().stream().filter(product -> product.getAvailability() == Availability.AVAILABLE).collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean hasPublicStoreFront() {
+        return getAvailableProducts().size() > 0;
     }
 
     @Override

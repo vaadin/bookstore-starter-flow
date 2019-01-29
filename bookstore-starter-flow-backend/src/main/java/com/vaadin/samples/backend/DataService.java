@@ -14,6 +14,10 @@ public abstract class DataService implements Serializable {
 
     public abstract Collection<Product> getAllProducts();
 
+    public abstract boolean hasPublicStoreFront();
+
+    public abstract Collection<Product> getAvailableProducts();
+
     public abstract Collection<Category> getAllCategories();
 
     public abstract void updateProduct(Product p);
