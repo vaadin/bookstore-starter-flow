@@ -69,13 +69,12 @@ public class LoginScreen extends FlexLayout {
         loginForm.addFormItem(username = new TextField(), "Username");
         username.setWidth("15em");
         username.setValue("admin");
-        Shortcuts.addShortcut(username, username, () -> password.focus(),
-                Key.ENTER);
+        password.addFocusShortcut(Key.ENTER).listenOn(username);
 
         loginForm.add(new Html("<br/>"));
         loginForm.addFormItem(password = new PasswordField(), "Password");
         password.setWidth("15em");
-        Shortcuts.addShortcut(password, password, this::login, Key.ENTER);
+        login.addClickShortcut(Key.ENTER).listenOn(password);
 
         HorizontalLayout buttons = new HorizontalLayout();
         loginForm.add(new Html("<br/>"));
