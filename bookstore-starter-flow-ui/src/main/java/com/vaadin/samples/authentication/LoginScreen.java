@@ -62,6 +62,12 @@ public class LoginScreen extends FlexLayout {
     private Component buildLoginForm() {
         FormLayout loginForm = new FormLayout();
 
+        // This is a workaround for current form-layout regression
+        // https://github.com/vaadin/vaadin-form-layout/issues/108
+        // which makes the login form is not shown in the middle of the screen.
+        // Remove the following line after the issue gets fixed
+        loginForm.getElement().getStyle().set("margin", "auto");
+
         loginForm.setWidth("310px");
 
         loginForm.addFormItem(username = new TextField(), "Username");
