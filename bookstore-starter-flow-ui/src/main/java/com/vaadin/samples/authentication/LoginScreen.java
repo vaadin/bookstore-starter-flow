@@ -70,11 +70,11 @@ public class LoginScreen extends FlexLayout {
         loginForm.addFormItem(username = new TextField(), "Username");
         username.setWidth("15em");
         username.setValue("admin");
+        username.setAutofocus(true);
 
         loginForm.add(new Html("<br/>"));
         loginForm.addFormItem(password = new PasswordField(), "Password");
         password.setWidth("15em");
-        password.addFocusShortcut(Key.ENTER).listenOn(username);
 
         HorizontalLayout buttons = new HorizontalLayout();
         loginForm.add(new Html("<br/>"));
@@ -83,9 +83,7 @@ public class LoginScreen extends FlexLayout {
         buttons.add(login = new Button("Login"));
         login.addThemeVariants(ButtonVariant.LUMO_SUCCESS, ButtonVariant.LUMO_PRIMARY);
         login.addClickListener(event -> login());
-        // allowBrowserDefault enables enter-key to pass the password
-        // to the server
-        login.addClickShortcut(Key.ENTER).allowBrowserDefault();
+        login.addClickShortcut(Key.ENTER).listenOn(password);
 
         buttons.add(forgotPassword = new Button("Forgot password?"));
         forgotPassword.addClickListener(event -> showNotification(new Notification("Hint: same as username")));
@@ -119,6 +117,7 @@ public class LoginScreen extends FlexLayout {
                 showNotification(new Notification("Login failed. " +
                         "Please check your username and password and try again."));
                 username.focus();
+                password.setValue("");
             }
         } finally {
             login.setEnabled(true);
@@ -138,7 +137,7 @@ public class LoginScreen extends FlexLayout {
     private void showNotification(Notification notification) {
         // keep the notification visible a little while after moving the
         // mouse, or until clicked
-        notification.setDuration(2000);
+        notification.setDuration(3000);
         notification.open();
     }
 }
