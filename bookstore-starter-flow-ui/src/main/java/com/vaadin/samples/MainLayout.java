@@ -57,11 +57,13 @@ public class MainLayout extends FlexLayout implements RouterLayout {
         if (sessionScopedConfiguration.isRouteRegistered(AdminView.class)) {
             addAdminMenuItemCommand.execute();
         } else {
-            sessionScopedConfiguration
-                    .addRoutesChangeListener(event -> event.getAddedRoutes()
-                            .stream().map(RouteBaseData::getNavigationTarget)
-                            .filter(target -> target.equals(AdminView.class))
-                            .findAny().ifPresent(obj -> addAdminMenuItemCommand.execute()));
+            sessionScopedConfiguration.addRoutesChangeListener(event -> {
+                for (RouteBaseData data : event.getAddedRoutes()) {
+                    if (data.getNavigationTarget().equals(AdminView.class)) {
+                        addAdminMenuItemCommand.execute();
+                    }
+                }
+            });
         }
     }
 }

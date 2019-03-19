@@ -1,10 +1,8 @@
 package com.vaadin.samples.backend.data;
 
-import java.io.Serializable;
-
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 public class Category implements Serializable {
 
