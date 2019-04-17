@@ -9,6 +9,5 @@
 
 # The following files are generated/updated by flow-maven-plugin
 **/node_modules
-frontend/main.js
 package.json
 webpack.config.js

@@ -20,7 +20,7 @@ import com.vaadin.samples.crud.SampleCrudView;
 /**
  * The main layout. Contains the navigation menu.
  */
-@HtmlImport("css/shared-styles.html")
+@HtmlImport("frontend://styles/shared-styles.js")
 @Theme(value = Lumo.class)
 @PWA(name = "Bookstore Starter", shortName = "Bookstore")
 public class MainLayout extends FlexLayout implements RouterLayout {
