@@ -29,7 +29,7 @@ module.exports = {
   mode: 'production',
   context: frontendFolder,
   entry: {
-    index: '/Users/someonetoignore/Work/flow/bookstore-starter-flow/bookstore-starter-flow-ui/target/frontend/generated-flow-imports.js'
+    index: `${baseDir}/target/frontend/generated-flow-imports.js`
   },
 
   output: {
