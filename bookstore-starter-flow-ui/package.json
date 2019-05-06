@@ -9,6 +9,7 @@
     "@vaadin/vaadin-select": "=2.0.4",
     "@polymer/iron-list": "=3.0.2",
     "@vaadin/vaadin-list-box": "=1.1.0",
+    "@vaadin/vaadin-app-layout": "=2.0.0",
     "@vaadin/vaadin-checkbox": "=2.2.7",
     "@vaadin/vaadin-item": "=2.1.0",
     "@vaadin/vaadin-context-menu": "=4.3.4",

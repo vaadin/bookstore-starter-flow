@@ -3,7 +3,7 @@ package com.vaadin.samples;
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.KeyModifier;
-import com.vaadin.flow.component.dependency.JavaScript;
+import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.router.RouteBaseData;
@@ -22,7 +22,7 @@ import com.vaadin.samples.crud.SampleCrudView;
  */
 @Theme(value = Lumo.class)
 @PWA(name = "Bookstore Starter", shortName = "Bookstore")
-@JavaScript("frontend://styles/shared-styles.js")
+@JsModule("frontend://styles/shared-styles.js")
 public class MainLayout extends FlexLayout implements RouterLayout {
     private Menu menu;
 
