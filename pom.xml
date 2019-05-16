@@ -80,6 +80,14 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+        <!-- Repository needed for the prerelease versions of Vaadin -->
+        <repository>
+            <id>vaadin-prereleases</id>
+            <url>https://maven.vaadin.com/vaadin-prereleases</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
         <!-- Repository needed for the snapshot versions of Vaadin -->
         <repository>
             <id>vaadin-snapshots</id>
