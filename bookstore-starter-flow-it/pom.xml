@@ -21,12 +21,8 @@
         <!-- Flow -->
         <dependency>
             <groupId>com.vaadin</groupId>
-            <artifactId>flow-client</artifactId>
+            <artifactId>flow-server</artifactId>
         </dependency>
-        <!--dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>flow-html-components</artifactId>
-        </dependency-->
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>flow-server-production-mode</artifactId>
@@ -50,12 +46,6 @@
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-testbench</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>flow-server</artifactId>
-            <version>2.0.0.rc2</version>
             <scope>test</scope>
         </dependency>
 
