@@ -31,19 +31,17 @@ public abstract class AbstractViewTest extends ParallelTest {
     private static final int SERVER_PORT = 8080;
 
     private final String route;
-    private final By rootSelector;
 
     @Rule
     public ScreenshotOnFailureRule rule = new ScreenshotOnFailureRule(this,
             false);
 
     public AbstractViewTest() {
-        this("", By.tagName("body"));
+        this("");
     }
 
-    protected AbstractViewTest(String route, By rootSelector) {
+    protected AbstractViewTest(String route) {
         this.route = route;
-        this.rootSelector = rootSelector;
     }
 
     @Before
@@ -57,18 +55,8 @@ public abstract class AbstractViewTest extends ParallelTest {
     }
 
     /**
-     * Convenience method for getting the root element of the view based on
-     * the selector passed to the constructor.
-     *
-     * @return the root element
-     */
-    protected WebElement getRootElement() {
-        return findElement(rootSelector);
-    }
-
-    /**
      * Asserts that the given {@code element} is rendered using a theme
-     * identified by {@code themeClass}. If the the is not found, JUnit
+     * identified by {@code themeClass}. If the theme is not found, JUnit
      * assert will fail the test case.
      *
      * @param element       web element to check for the theme

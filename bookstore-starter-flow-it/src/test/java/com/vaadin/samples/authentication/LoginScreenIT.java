@@ -3,10 +3,17 @@ package com.vaadin.samples.authentication;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.vaadin.flow.theme.lumo.Lumo;
 import com.vaadin.samples.AbstractViewTest;
 import com.vaadin.samples.MainLayoutElement;
 
 public class LoginScreenIT extends AbstractViewTest {
+
+    @Test
+    public void loginForm_isLumoThemed() {
+        LoginFormElement loginForm = $(LoginFormElement.class).first();
+        assertThemePresentOnElement(loginForm, Lumo.class);
+    }
 
     @Test
     public void loginAsAdmin_hasAdminViewLink() {

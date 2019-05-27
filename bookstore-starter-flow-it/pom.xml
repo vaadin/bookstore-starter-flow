@@ -18,14 +18,14 @@
     </properties>
 
     <dependencies>
-        <!-- Flow -->
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-core</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>flow-server</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>flow-server-production-mode</artifactId>
         </dependency>
 
         <!-- Logger -->
@@ -43,6 +43,7 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Vaadin Testbench -->
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-testbench</artifactId>
@@ -51,14 +52,7 @@
 
     </dependencies>
 
-    <build>
-        <plugins>
-
-        </plugins>
-    </build>
-
     <profiles>
-
         <profile>
             <id>integration-tests</id>
             <build>
