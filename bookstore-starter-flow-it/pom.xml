@@ -89,19 +89,7 @@
                             <stopPort>8081</stopPort>
                             <stopWait>5</stopWait>
                             <stopKey>${project.artifactId}</stopKey>
-                            <systemProperties>
-                                <systemProperty>
-                                    <name>vaadin.devmode.webpack.options</name>
-                                    <value>--debug</value>
-                                </systemProperty>
-                                <systemProperty>
-                                    <name>project.basedir</name>
-                                    <value>${project.basedir}</value>
-                                </systemProperty>
-                            </systemProperties>
-
                             <daemon>false</daemon>
-
                         </configuration>
                         <executions>
                             <execution>
