@@ -5,6 +5,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import com.vaadin.testbench.TestBench;
 import com.vaadin.testbench.TestBenchElement;
 import com.vaadin.testbench.annotations.Attribute;
 import com.vaadin.testbench.elementsbase.Element;
@@ -28,5 +29,4 @@ public class MainLayoutElement extends TestBenchElement {
                 .orElseThrow(() -> new IllegalArgumentException("No " + label))
                 .click();
     }
-
 }
