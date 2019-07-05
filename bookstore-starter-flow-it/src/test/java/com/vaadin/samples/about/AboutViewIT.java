@@ -7,7 +7,6 @@ import com.vaadin.flow.component.html.testbench.SpanElement;
 import com.vaadin.samples.AbstractViewTest;
 import com.vaadin.samples.MainLayoutElement;
 import com.vaadin.samples.authentication.LoginFormElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class AboutViewIT extends AbstractViewTest {
 
