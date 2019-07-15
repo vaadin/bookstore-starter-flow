@@ -34,7 +34,7 @@ Other basic workflow steps:
 - creating a production mode war
   - run `mvn package -Pproduction` in the ui module or in the parent module
 - running in production mode
-  - run `mvn jetty:run-exploded -Pproduction` in ui module
+  - run `mvn jetty:run -Pproduction` in ui module
   - open http://localhost:8080/
 
 ### Branching information:
